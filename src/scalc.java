@@ -6,7 +6,11 @@ public class scalc {
     public static void main(String[] args) throws IOException {
         Scanner in = new Scanner(System.in);
         String op = in.nextLine();
-        System.out.println(scan(op));
+        if (scan(op).length()<45) {
+            System.out.println("\""+scan(op)+"\"");
+        }else{
+            System.out.println("\""+scan(op).substring(0, 40)+"...");
+        }
     }
     public static String scan(String input) throws IOException {
         String d;
@@ -34,12 +38,15 @@ public class scalc {
 
     public static StringBuffer calc(String i1, String i2, String i3) throws IOException {
         StringBuffer d = new StringBuffer();
-        String ds;
         int di;
         int ii3;
         if ((i1.charAt(0)=='\"')){
         i1 = i1.replaceAll("\"","");
+
         i3 = i3.replaceAll("\"","");
+            if ((i1.length()>10)||(i3.length()>10)){
+                throw new IOException();
+            }
             switch (i2) {
                 case "*" -> {
                     ii3 = Integer.parseInt(i3);
